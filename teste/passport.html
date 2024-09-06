@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+      margin: 0; /* Para garantir que não haja margem extra */
+      padding: 20px;
+      border: solid 10px black;
+      font-family: monospace;
+      color: #404040;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background-image: url(./backimg.png);
+      /* background-repeat: no-repeat; */
+      /* background-size: cover;
+      background-position: center center; */
+      background-size: cover;
+      background-position: center center;
+    }
+    .container {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        height: 400px;
+    }
+    header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+    }
+    header p {
+        font-size: 14px;
+        color: #666;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+    .class-input {
+        margin-bottom: 15px;
+    }
+    .class-input label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .class-input input,
+    .class-input textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .class-input textarea {
+        height: 100px;
+        resize: vertical;
+    }
+    button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    input[type="file"] {
+        margin-top: 10px;
+    }
+ .qr-code .img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    } 
+  footer {
+      background-image: url('Rodape-banner-arte-cict-2024-1.png');
+      background-size: contain; /* Ajuste se a imagem for pequena */
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 150px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  </style>
+<body> 
+    <div class="container">
+        <div class="qr-code">
+             <img src="" alt="" class="img">
+
+
+        </div>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
+        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+        import { getStorage, ref as storageRef, uploadBytes } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfg8uNcTgtvWQOzhKfDB8x4olxtfos7TI",
+            authDomain: "chamadasppqti.firebaseapp.com",
+            projectId: "chamadasppqti",
+            storageBucket: "chamadasppqti.appspot.com",
+            messagingSenderId: "795357570575",
+            appId: "1:795357570575:web:de4e9abd5c92a9e1c0e57a",
+            measurementId: "G-NS6N2G02MY"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const storage = getStorage(app);
+
+        const randomNum = Math.floor(Math.random() * 1700) + 1;
+
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const submitBtn = document.querySelector('button[type="submit"]');
+        const qrImage = document.querySelector('.qr-code .img');
+
+        submitBtn.addEventListener('click', () => {
+            const name = emailInput.value;
+            const reason = passwordInput.value;
+
+            if (!name || !reason) {
+                alert("Por favor, informe seu nome e o motivo do chamado.");
+                return;
+            }
+
+            const qrValue = randomNum + ';' + name + ';' + reason;
+
+            // Upload de imagem se necessário
+            // const file = cameraCapture.files[0];
+            // if (file) {
+            //     const fileRef = storageRef(storage, `camera_images/${file.name}`);
+            //     uploadBytes(fileRef, file).then(() => {
+            //         console.log('Imagem enviada com sucesso!');
+            //     }).catch((error) => {
+            //         console.error('Erro ao enviar a imagem:', error);
+            //     });
+            // }
+
+            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(qrValue)}`
+            qrImage.addEventListener('load', () => {
+                submitBtn.innerText = 'Solicitação Enviada!';
+                saveQRCodeToFirebase(qrValue);
+            });
+        });
+
+        function saveQRCodeToFirebase(qrData) {
+            const qrRef = ref(database, 'qrcodes');
+            const newQRCodeRef = push(qrRef);
+            set(newQRCodeRef, {
+                qrData: qrData,
+                timestamp: Date.now()
+            }).then(() => {
+                console.log('QR Code salvo com sucesso no Firebase!');
+            }).catch((error) => {
+                console.error('Erro ao salvar QR Code no Firebase:', error);
+            });
+        }
+    </script>
+</body>
+</html>
