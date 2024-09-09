@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CICtqrCodes</title>
-    <style>
-        /* Seu CSS existente */
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <style>
   body {
@@ -31,8 +29,9 @@
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
       padding: 20px;
+      height: 600px;
   }
   header {
       text-align: center;
@@ -72,7 +71,7 @@
       resize: vertical;
   }
   button {
-      background-color: #007bff;
+      background-color: #020202;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -83,7 +82,7 @@
       width: 100%;
   }
   button:hover {
-      background-color: #0056b3;
+      background-color: grey;
   }
   input[type="file"] {
       margin-top: 10px;
@@ -109,9 +108,13 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
+
+
+
 </style>
 <body>
-  <form action="passport.html">
+  <!-- <form action="passport.html"> -->
     <div class="container">
         <header>
             <h1>Bem vindo(a)!</h1>
@@ -128,19 +131,25 @@ footer {
             </div>
             <!-- Remova este input se não estiver usando -->
             <!-- <input type="file" id="cameraCapture" accept="image/*" capture="camera" /> -->
-            <button type="submit">Enviar Solicitação</button>
+            <button type="submit">Gerar Qr-Code!</button>
           </form>
         </main>
         <div class="qr-code">
+            <div>
             <img src="" alt="" class="img">
         </div>
+        <div class="none" style="width: 170px; height: 170px; padding-left: 20px; display: none;">
+            <h4>
+                NOME: <br><span id="display-name"></span>
+                <br>
+                MATRÍCULA:<br> <span id="display-reason"></span>
+            </h4>
+            <div class="logo">
+            <img src="logo_propesq.png">
+        </div>
+        </div>
+        </div>
     </div>
-   <footer>
-
-    <div style="display: flex; justify-content: center; align-items: center;">
-    <img src="Rodapé banner arte - cict 2024-1.png">
-    </div>
-    </footer>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
@@ -175,7 +184,7 @@ footer {
             const reason = passwordInput.value;
 
             if (!name || !reason) {
-                alert("Por favor, informe seu nome e o motivo do chamado.");
+                alert("Por favor, informe seu nome e matrícula institucional");
                 return;
             }
 
@@ -194,9 +203,15 @@ footer {
 
             qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(qrValue)}`
             qrImage.addEventListener('load', () => {
-                submitBtn.innerText = 'Solicitação Enviada!';
+                submitBtn.innerText = 'Qr-Code gerado com sucesso!';
                 saveQRCodeToFirebase(qrValue);
-            });
+                document.getElementById('display-name').textContent = name;
+        document.getElementById('display-reason').textContent = reason;
+        document.querySelector('.qr-code').style.display = 'flex';
+
+        document.querySelector('.none').style.display = 'flex';
+
+    });
         });
 
         function saveQRCodeToFirebase(qrData) {
