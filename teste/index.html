@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,114 +8,116 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <style>
-  body {
-    margin: 0; /* Para garantir que não haja margem extra */
-    padding: 20px;
-    border: solid 10px black;
-    font-family: monospace;
-    color: #404040;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background-image: url(./backimg.png);
-    /* background-repeat: no-repeat; */
-    /* background-size: cover;
-    background-position: center center; */
-    background-size: cover;
-    background-position: center center;
-  }
-  .container {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 500px;
-      padding: 20px;
-      height: 600px;
-  }
-  header {
-      text-align: center;
-      margin-bottom: 20px;
-  }
-  header h1 {
-      margin: 0;
-      font-size: 24px;
-      color: #333;
-  }
-  header p {
-      font-size: 14px;
-      color: #666;
-  }
-  .form {
-      display: flex;
-      flex-direction: column;
-  }
-  .class-input {
-      margin-bottom: 15px;
-  }
-  .class-input label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-  }
-  .class-input input,
-  .class-input textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-sizing: border-box;
-  }
-  .class-input textarea {
-      height: 100px;
-      resize: vertical;
-  }
-  button {
-      background-color: #020202;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      width: 100%;
-  }
-  button:hover {
-      background-color: grey;
-  }
-  input[type="file"] {
-      margin-top: 10px;
-  }
-  /* .qr-code .img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-  } */
-footer {
-    background-image: url('Rodape-banner-arte-cict-2024-1.png');
-    background-size: contain; /* Ajuste se a imagem for pequena */
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 150px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    body {
+        margin: 0;
 
+        padding: 20px;
+        border: solid 10px black;
+        font-family: monospace;
+        color: #404040;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background-image: url(./backimg.png);
+        background-size: cover;
+        background-position: center center;
+    }
 
+    .container {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        padding: 20px;
+        height: 600px;
+    }
 
+    header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
+    header h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+    }
+
+    header p {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .class-input {
+        margin-bottom: 15px;
+    }
+
+    .class-input label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .class-input input,
+    .class-input textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .class-input textarea {
+        height: 100px;
+        resize: vertical;
+    }
+
+    button {
+        background-color: #020202;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+    }
+
+    button:hover {
+        background-color: grey;
+    }
+
+    input[type="file"] {
+        margin-top: 10px;
+    }
+
+    footer {
+        background-image: url('Rodape-banner-arte-cict-2024-1.png');
+        background-size: contain;
+        /* Ajuste se a imagem for pequena */
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 150px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
+
 <body>
-  <!-- <form action="passport.html"> -->
     <div class="container">
         <header>
             <h1>Bem vindo(a)!</h1>
@@ -127,27 +130,24 @@ footer {
             </div>
             <div class="class-input">
                 <label for="password">Insira sua matricula institucional.</label>
-                <input type="password" id="password" placeholder="20270077727" required >
+                <input type="password" id="password" placeholder="20270077727" required>
             </div>
-            <!-- Remova este input se não estiver usando -->
-            <!-- <input type="file" id="cameraCapture" accept="image/*" capture="camera" /> -->
             <button type="submit">Gerar Qr-Code!</button>
-          </form>
         </main>
         <div class="qr-code">
             <div>
-            <img src="" alt="" class="img">
-        </div>
-        <div class="none" style="width: 170px; height: 170px; padding-left: 20px; display: none;">
-            <h4>
-                NOME: <br><span id="display-name"></span>
-                <br>
-                MATRÍCULA:<br> <span id="display-reason"></span>
-            </h4>
-            <div class="logo">
-            <img src="logo_propesq.png">
-        </div>
-        </div>
+                <img src="" alt="" class="img">
+            </div>
+            <div class="none" style="width: 170px; height: 170px; padding-left: 20px; display: none;">
+                <h4>
+                    NOME: <br><span id="display-name"></span>
+                    <br>
+                    MATRÍCULA:<br> <span id="display-reason"></span>
+                </h4>
+                <div class="logo">
+                    <img src="logo_propesq.png">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -172,6 +172,9 @@ footer {
         const database = getDatabase(app);
         const storage = getStorage(app);
 
+        // permitidas
+        const matriculasValidas = ['20210018964', '20270077727', '20230012345'];
+
         const randomNum = Math.floor(Math.random() * 1700) + 1;
 
         const emailInput = document.getElementById('email');
@@ -179,9 +182,16 @@ footer {
         const submitBtn = document.querySelector('button[type="submit"]');
         const qrImage = document.querySelector('.qr-code .img');
 
-        submitBtn.addEventListener('click', () => {
+        submitBtn.addEventListener('click', (event) => {
+            event.preventDefault();
             const name = emailInput.value;
             const reason = passwordInput.value;
+
+            // matrículas válidas
+            if (!matriculasValidas.includes(reason)) {
+                alert("Matrícula inválida! ");
+                return;
+            }
 
             if (!name || !reason) {
                 alert("Por favor, informe seu nome e matrícula institucional");
@@ -190,28 +200,15 @@ footer {
 
             const qrValue = randomNum + ';' + name + ';' + reason;
 
-            // Upload de imagem se necessário
-            // const file = cameraCapture.files[0];
-            // if (file) {
-            //     const fileRef = storageRef(storage, `camera_images/${file.name}`);
-            //     uploadBytes(fileRef, file).then(() => {
-            //         console.log('Imagem enviada com sucesso!');
-            //     }).catch((error) => {
-            //         console.error('Erro ao enviar a imagem:', error);
-            //     });
-            // }
-
-            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(qrValue)}`
+            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(qrValue)}`;
             qrImage.addEventListener('load', () => {
                 submitBtn.innerText = 'Qr-Code gerado com sucesso!';
                 saveQRCodeToFirebase(qrValue);
                 document.getElementById('display-name').textContent = name;
-        document.getElementById('display-reason').textContent = reason;
-        document.querySelector('.qr-code').style.display = 'flex';
-
-        document.querySelector('.none').style.display = 'flex';
-
-    });
+                document.getElementById('display-reason').textContent = reason;
+                document.querySelector('.qr-code').style.display = 'flex';
+                document.querySelector('.none').style.display = 'flex';
+            });
         });
 
         function saveQRCodeToFirebase(qrData) {
@@ -228,4 +225,5 @@ footer {
         }
     </script>
 </body>
+
 </html>
