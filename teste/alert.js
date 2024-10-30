@@ -3,15 +3,15 @@ function showCustomAlert(header, message) {
     const alertHeader = document.getElementById('alert-header');
     const alertMessage = document.getElementById('alert-message');
     
-    alertHeader.textContent = header;  // Definir o título do alerta
-    alertMessage.textContent = message;  // Definir a mensagem do alerta
+    alertHeader.textContent = header; 
+    alertMessage.textContent = message;  
 
-    alertBox.style.display = 'flex';  // Mostrar o alerta
+    alertBox.style.display = 'flex';  
 
     document.getElementById('alert-ok-btn').addEventListener('click', () => {
-        alertBox.style.display = 'none';  // Ocultar o alerta ao clicar em OK
+        alertBox.style.display = 'none';  
     });
 }
 
-// Exemplo de como chamar o alerta personalizado
+
 showCustomAlert('Atenção!', 'Por favor, insira sua matrícula institucional.');
