@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passaportes CICT</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+    </style>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="alert.js"></script>
+
+
+    <!-- import Developer from 'elielfernandes333';  -->
+
+
+    
+</head>
+
+<style>
+    #custom-alert {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .alert-box {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .alert-box h3 {
+        margin-top: 0;
+    }
+
+    .alert-box p {
+        margin: 10px 0;
+    }
+
+    #alert-ok-btn {
+        background-color: #E51038;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #alert-ok-btn:hover {
+        background-color: #c0002d;
+    }
+
+    body {
+        margin: 0;
+        padding: 20px;
+        font-family: 'Poppins', sans-serif;
+        color: #404040;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background-color: #EFEFEF;
+    }
+
+    .container {
+        background: #fff;
+        border-radius: 42px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        height: auto;
+        padding-top: 10px;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+    }
+
+    header p {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .class-input {
+        margin-bottom: 15px;
+    }
+
+    .class-input label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .class-input input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #F3F2F2;
+        border-radius: 16px;
+        box-sizing: border-box;
+    }
+
+    input {
+        border-radius: 42px;
+        background-color: #F3F2F2;
+    }
+
+    button {
+        background-color: #020202;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 16px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    button:hover {
+        background-color: #E51038;
+    }
+
+    .qr-code {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .qr-code img {
+        width: 170px;
+        height: 170px;
+    }
+
+    footer {
+        height: 150px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .idk {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .idk img {
+        width: 110px;
+        height: 24px;
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+    }
+
+    .idk img:hover {
+        filter: grayscale(0%);
+    }
+
+    h4 {
+        color: black;
+    }
+
+    .qr-code {
+        display: none;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #00CB99;
+
+        border-radius: 16px;
+        width: 100%;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .qr-code .img {
+        width: 170px;
+        height: 170px;
+        border: 2px solid #fff;
+        border-radius: 8px;
+        margin-left: 20px;
+    }
+
+    .qr-code .idk {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 20px;
+        margin-right: 200px;
+    }
+
+    .qr-code .idk h4 {
+        width: 100%;
+        margin: 0;
+        font-size: 16px;
+        color: black;
+        font-weight: 600;
+
+    }
+
+    .qr-code .idk span {
+        width: 100%;
+        font-size: 16px;
+        font-weight: normal;
+        color: black;
+    }
+
+    .qr-code .logo {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .qr-code .logo img {
+        width: 100%;
+        height: auto;
+    }
+
+    .idk {}
+
+    @media (max-width: 768px) {
+        body {
+            padding: 10px;
+            height: auto;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .imagens {
+            padding-top: none;
+            height: 100px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imagens img {
+            padding-top: none;
+            width: 80%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 6vw;
+        }
+
+        header p {
+            font-size: 4vw;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .qr-code img {
+            width: 120px;
+            height: 120px;
+        }
+
+        footer {
+            height: auto;
+            padding: 10px;
+            position: fixed;
+        }
+    }
+
+    #header-h3, #header-h4 {
+        padding-top: 20px;
+        margin: 5px;
+    
+    display: block; 
+    text-align: center; 
+    width: 100%;
+    font-size: 20px;
+}
+
+
+
+
+
+/* .qr-code {
+    margin: 50px 0px;
+    padding: 20px 0px ; 
+    display: none;
+    justify-content: space-around;
+    flex-direction: row;
+    /* background: rgb(232,91,14);
+    background: linear-gradient(90deg, rgba(232,91,14,1) 0%, rgba(214,38,38,1) 37%, rgba(67,177,145,1) 100%); */
+    /* background: #00CB99;
+    border-radius: 16px;
+    
+
+
+} */
+*/
+
+.idk {
+    flex-direction: column;
+}
+.idk img {
+    max-width: 140px;
+    height: 24px;
+    filter: brightness(0); 
+}
+
+.idk img:hover {
+    filter: grayscale(0%); 
+}
+
+h4 {
+    color: black;
+}
+
+.qr-code {
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00CB99;
+    
+    border-radius: 16px;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+
+}
+
+.qr-code .img {
+    width: 170px;
+    height: 170px;
+    border: 2px solid #fff; 
+    border-radius: 8px;
+    margin-left: 20px;
+}
+
+.qr-code .idk {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    margin-right: 200px;
+}
+
+.qr-code .idk h4 {
+    margin: 0;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+
+}
+
+.qr-code .idk span {
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+}
+
+.qr-code .logo {
+    margin-top: 10px;
+}
+
+.qr-code .logo img {
+    width: 150px;
+    height: auto;
+}
+.idk {
+
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        height: auto; 
+        flex-direction: column;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .imagens {
+        height: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imagens img {
+        width: 80%; 
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    header h1 {
+        font-size: 6vw;
+    }
+
+    header p {
+        font-size: 4vw;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .qr-code img {
+        width: 120px; 
+        height: 120px;
+    }
+
+    footer {
+        height: auto;
+        padding: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .qr-code .idk {
+        margin-right: 0; 
+        padding-left: 10px;
+        width: 120;
+    }
+}
+
+.qr-code .idk {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20px; 
+    word-wrap: break-word; 
+    white-space: normal; 
+}
+#loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #E51038; 
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+</style>
+
+<body>
+    <div id="custom-alert" style="display: none;">
+        <div class="alert-box">
+            <h3 id="alert-header"></h3>
+            <p id="alert-message"></p>
+            <button id="alert-ok-btn">OK</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <h3 id="header-h3" style="display: none;">35º Congresso de Iniciação Científica e Tecnológica da UFRN <br>
+                <br>
+            <span class="bold" style="padding-top: 10px; font-weight: bold; color: #000;"><strong>PASSAPORTE</strong></span></h3>
+        </div>
+        
+
+        <div class="imagens"
+            style="height: 100px; width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+            <img src="Design sem nome (6) (1).png" style="width: 102px; height: 80.5px;"> <img
+                src="d79ca9df-aee3-401c-8ad8-7d28c3a0a1ec.png" style="width: 104.5px; height: 82px;">
+        </div>
+        <header>
+            <h1>Bem vindo(a)!</h1>
+            <p class="form-field">Insira sua matrícula institucional para gerar seu passaporte</p>
+        </header>
+        <main class="form">
+            <div class="class-input form-field">
+                <label style="padding-left: 5px;" for="matricula">Matrícula institucional:</label>
+                <input type="text" id="matricula" placeholder="try 12345678901 " required />
+            </div>
+            <button type="submit">Gerar Passaporte!</button>
+            <div id="loading-spinner" style="display: none;">
+                <div class="spinner"></div>
+            </div>
+
+        </main>
+
+        <div class="qr-code" style="flex-direction: row;">
+            <div style="padding-top: 20px; padding-bottom: 20px; margin-top: none; margin-bottom: none;">
+                <img src="" alt="QR Code" class="img">
+            </div>
+            <div class="idk">
+                <h4>
+                    Nome: <br><span id="display-name"></span><br>
+                    Matrícula:<br><span id="display-matricula"></span>
+                </h4>
+                <div class="logo"> <img src="logo_propesq.png"> </div>
+            </div>
+        </div>
+        <button id="back-btn" style="display: none; margin-top: 20px; margin-bottom: 25px;" ><a style="color: #fff; text-decoration: none; font-family: 'Poppins'; font-size: 16px;" href="index.html">Voltar</a>
+
+    </div>
+
+    <script type="module">
+const matriculaInput = document.getElementById('matricula');
+const submitBtn = document.querySelector('button[type="submit"]');
+const qrImage = document.querySelector('.qr-code .img');
+const imagensDiv = document.querySelector('.imagens');
+
+submitBtn.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    const matricula = matriculaInput.value.trim();
+
+    if (!matricula) {
+        showCustomAlert('Atenção!', 'Por favor, informe sua matrícula institucional.');
+        return;
+    }
+
+    document.getElementById('loading-spinner').style.display = 'flex';
+
+    try {
+        const response = await fetch('users.json'); // Substitua pelo caminho correto do seu JSON
+        const data = await response.json();
+
+        const user = data.find(user => user.Matrícula.toString() === matricula);
+
+        if (!user) {
+            showCustomAlert('Matrícula não encontrada!', 'Certifique-se de que seu trabalho foi submetido ao Congresso.');
+            document.getElementById('loading-spinner').style.display = 'none'; 
+            return;
+        }
+
+        const qrValue = `${user.indice}; Nome: ${user.Participante__1}; Matrícula: ${matricula}`;
+        qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(qrValue)}`;
+
+        qrImage.addEventListener('load', () => {
+            document.getElementById('loading-spinner').style.display = 'none';
+
+            submitBtn.style.display = 'none';
+            document.querySelector('header').style.display = 'none';
+
+            document.getElementById('display-name').textContent = user.Participante__1;
+            document.getElementById('display-matricula').textContent = matricula;
+
+            document.querySelector('.qr-code').style.display = 'flex';
+            document.querySelectorAll('.form-field').forEach(field => {
+                field.style.display = 'none';
+                imagensDiv.style.display = 'none';
+            });
+
+            const backBtn = document.getElementById('back-btn');
+            const headerH3 = document.getElementById('header-h3');
+            const headerH4 = document.getElementById('header-h4');
+
+            backBtn.style.display = 'block';
+            headerH3.style.display = 'block';
+            headerH4.style.display = 'block';
+
+            backBtn.addEventListener('click', () => {
+                location.reload();
+            });
+        });
+
+    } catch (error) {
+        console.error('Erro ao carregar o arquivo JSON:', error);
+        document.getElementById('loading-spinner').style.display = 'none';
+    }
+});
+
+
+
+        function showCustomAlert(header, message) {
+            const alertBox = document.getElementById('custom-alert');
+            const alertHeader = document.getElementById('alert-header');
+            const alertMessage = document.getElementById('alert-message');
+
+            alertHeader.textContent = header;
+            alertMessage.textContent = message;
+
+            alertBox.style.display = 'flex';
+
+            document.getElementById('alert-ok-btn').addEventListener('click', () => {
+                alertBox.style.display = 'none';
+            });
+            function adjustNameDisplay() {
+            const qrCodeContainer = document.querySelector('.qr-code');
+            const nameSpan = document.getElementById('display-name');
+
+           
+            if (nameSpan.offsetWidth > qrCodeContainer.offsetWidth) {
+                nameSpan.style.whiteSpace = "normal";  
+            } else {
+                nameSpan.style.whiteSpace = "nowrap";  
+            }
+        }
+        }
+
+
+
+    </script>
+    <script type="module" src="app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+
+
+
+
+/* .qr-code {
+    margin: 50px 0px;
+    padding: 20px 0px ; 
+    display: none;
+    justify-content: space-around;
+    flex-direction: row;
+    /* background: rgb(232,91,14);
+    background: linear-gradient(90deg, rgba(232,91,14,1) 0%, rgba(214,38,38,1) 37%, rgba(67,177,145,1) 100%); */
+    /* background: #00CB99;
+    border-radius: 16px;
+    
+
+
+} */
+ */
+
+.idk {
+    flex-direction: column;
+}
+.idk img {
+    max-width: 140px;
+    height: 24px;
+    filter: brightness(0); 
+}
+
+.idk img:hover {
+    filter: grayscale(0%); 
+}
+
+h4 {
+    color: black;
+}
+
+.qr-code {
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00CB99;
+    
+    border-radius: 16px;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+
+}
+
+.qr-code .img {
+    width: 170px;
+    height: 170px;
+    border: 2px solid #fff; 
+    border-radius: 8px;
+    margin-left: 20px;
+}
+
+.qr-code .idk {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    margin-right: 200px;
+}
+
+.qr-code .idk h4 {
+    margin: 0;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+
+}
+
+.qr-code .idk span {
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+}
+
+.qr-code .logo {
+    margin-top: 10px;
+}
+
+.qr-code .logo img {
+    width: 150px;
+    height: auto;
+}
+.idk {
+
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        height: auto; 
+        flex-direction: column;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .imagens {
+        height: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imagens img {
+        width: 80%; 
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    header h1 {
+        font-size: 6vw;
+    }
+
+    header p {
+        font-size: 4vw;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .qr-code img {
+        width: 120px; 
+        height: 120px;
+    }
+
+    footer {
+        height: auto;
+        padding: 10px;
+        position: fixed;
+    }
+}
